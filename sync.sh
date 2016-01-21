@@ -21,13 +21,13 @@ elif [ ! -d "$SYNC_DIR/.git" ]; then
     find -delete
   fi
 
-  if [ "$(ls -A $OVERWRITE_LOCAL)" ]; then
+  if [ -n "$(ls -A ${SYNC_DIR})" ]; then
     die "${SYNC_DIR} is not empty and --overwrite-local was not specified"
   fi
 
   git init || die "git init failed"
   git remote add origin "${GIT_REPO_URL}" || die "git remote add failed"
-  git fetch || die "git fetch failed"
+  git fetch origin || die "git fetch failed"
   git checkout -t origin/master || die "git checkout failed"
 fi
 
