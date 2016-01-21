@@ -1,0 +1,18 @@
+build_image:
+  stage: build
+  script:
+    - docker pull $(awk '/^FROM/ { print $2; exit }' Dockerfile)
+    - docker build -t docker-registry.bringnow.com/bringnow/git-sync:latest .
+  only:
+    - master
+  tags:
+    - docker
+
+deploy_image:
+   stage: deploy
+   script:
+     - docker push docker-registry.bringnow.com/bringnow/git-sync:latest
+   only:
+     - master
+   tags:
+    - docker

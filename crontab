@@ -1,0 +1,1 @@
+*/1 * * * * root /usr/local/bin/sync.sh >> /var/log/cron.log 2>&1
