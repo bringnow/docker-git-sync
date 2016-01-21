@@ -19,10 +19,12 @@ if [ -z "${GIT_REPO_URL}" ]; then
 fi
 
 # Set git author info
-git config --global user.email "${GIT_USER_EMAIL}"
 git config --global user.name "${GIT_USER_NAME}"
+git config --global user.email "${GIT_USER_EMAIL}"
 
-env >> /etc/sync_env
+echo "GIT_USER_NAME=\"${GIT_REPO_URL}\"" >> /etc/sync_env
+echo "GIT_USER_EMAIL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
+echo "GIT_REPO_URL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 
 if [ "$1" = "--overwrite-local"  ]; then
   echo OVERWRITE_LOCAL="true" >> /etc/sync_env
