@@ -1,7 +1,6 @@
 #! /bin/bash
 
 touch /var/log/cron.log
-touch /etc/sync_env
 
 function die {
     echo >&2 "$@"
@@ -22,6 +21,8 @@ fi
 # Set git author info
 git config --global user.email "${GIT_USER_EMAIL}"
 git config --global user.name "${GIT_USER_NAME}"
+
+env >> /etc/sync_env
 
 if [ "$1" = "--overwrite-local"  ]; then
   echo OVERWRITE_LOCAL="true" >> /etc/sync_env
