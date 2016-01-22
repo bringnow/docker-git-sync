@@ -22,6 +22,9 @@ fi
 git config --global user.name "${GIT_USER_NAME}"
 git config --global user.email "${GIT_USER_EMAIL}"
 
+# Use default push behavior of Git 2.0
+git config --global push.default simple
+
 echo "GIT_USER_NAME=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 echo "GIT_USER_EMAIL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 echo "GIT_REPO_URL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
