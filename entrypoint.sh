@@ -18,6 +18,9 @@ if [ -z "${GIT_REPO_URL}" ]; then
   die "GIT_REPO_URL must be specified!"
 fi
 
+# Ensure correct permissions
+chmod 0700 /root/.ssh && chmod 0600 /root/.ssh/id_rsa && chmod 0644 /root/.ssh/id_rsa && chmod 0644 /root/.ssh/known_hosts
+
 # Set git author info
 git config --global user.name "${GIT_USER_NAME}"
 git config --global user.email "${GIT_USER_EMAIL}"
