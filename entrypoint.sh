@@ -19,7 +19,10 @@ if [ -z "${GIT_REPO_URL}" ]; then
 fi
 
 # Ensure correct permissions
-chmod 0700 /root/.ssh && chmod 0600 /root/.ssh/id_rsa && chmod 0644 /root/.ssh/id_rsa && chmod 0644 /root/.ssh/known_hosts
+chmod 0700 /root/.ssh
+chmod 0600 /root/.ssh/id_rsa
+chmod 0644 /root/.ssh/id_rsa
+chmod 0644 /root/.ssh/known_hosts
 
 # Set git author info
 git config --global user.name "${GIT_USER_NAME}"
