@@ -9,6 +9,8 @@ function die {
     exit 1
 }
 
+echo "Starting sync at $(date -R)"
+
 if [ ! -d "$SYNC_DIR" ]; then
   echo "${SYNC_DIR} does not exist or is not a directory. Performing initial clone."
   git clone "${GIT_REPO_URL}" "${SYNC_DIR}" || die "git clone failed"
