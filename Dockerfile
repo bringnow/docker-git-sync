@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 MAINTAINER Fabian Köster <fabian.koester@bringnow.com>
 
 # Install runtime dependencies
