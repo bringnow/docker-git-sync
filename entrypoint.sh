@@ -35,6 +35,13 @@ echo "GIT_USER_NAME=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 echo "GIT_USER_EMAIL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 echo "GIT_REPO_URL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 
+# CRON_TIME can be set via environment
+# If not defined, the default is every minute
+CRON_TIME=${CRON_TIME:-*/1 * * * *}
+echo "Using cron time ${CRON_TIME}"
+echo "${CRONT_TIME} root /usr/local/bin/sync.sh >> /var/log/cron.log 2>&1" > /etc/cron.d/git-sync
+chmod 644 /etc/cron.d/git-sync
+
 if [ "$1" = "--overwrite-local"  ]; then
   echo OVERWRITE_LOCAL="true" >> /etc/sync_env
 fi
