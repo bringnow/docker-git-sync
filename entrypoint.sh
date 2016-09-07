@@ -21,7 +21,7 @@ fi
 # Ensure correct permissions
 chmod 0700 /root/.ssh
 chmod 0600 /root/.ssh/id_rsa
-chmod 0644 /root/.ssh/id_rsa
+chmod 0644 /root/.ssh/id_rsa.pub
 chmod 0644 /root/.ssh/known_hosts
 
 # Set git author info
