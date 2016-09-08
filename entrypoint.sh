@@ -31,8 +31,8 @@ git config --global user.email "${GIT_USER_EMAIL}"
 # Use default push behavior of Git 2.0
 git config --global push.default simple
 
-echo "GIT_USER_NAME=\"${GIT_REPO_URL}\"" >> /etc/sync_env
-echo "GIT_USER_EMAIL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
+echo "GIT_USER_NAME=\"${GIT_USER_NAME}\"" >> /etc/sync_env
+echo "GIT_USER_EMAIL=\"${GIT_USER_EMAIL}\"" >> /etc/sync_env
 echo "GIT_REPO_URL=\"${GIT_REPO_URL}\"" >> /etc/sync_env
 
 # CRON_TIME can be set via environment
