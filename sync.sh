@@ -13,7 +13,7 @@ echo "Starting sync at $(date -R)"
 
 if [ ! -d "$SYNC_DIR" ]; then
   echo "${SYNC_DIR} does not exist or is not a directory. Performing initial clone."
-  git clone "${GIT_REPO_URL}" "${SYNC_DIR}" || die "git clone failed"
+  git clone "${GIT_REPO_URL}" --branch "${GIT_REPO_BRANCH}" --single-branch "${SYNC_DIR}" || die "git clone failed"
 elif [ ! -d "$SYNC_DIR/.git" ]; then
   echo "${SYNC_DIR} exists but does not contain a git repository. Initializing local git repository before pulling remote"
   cd "${SYNC_DIR}"
@@ -29,13 +29,13 @@ elif [ ! -d "$SYNC_DIR/.git" ]; then
 
   git init || die "git init failed"
   git remote add origin "${GIT_REPO_URL}" || die "git remote add failed"
-  git fetch origin || die "git fetch failed"
-  git checkout -t origin/master || die "git checkout failed"
+  git fetch origin "${GIT_REPO_BRANCH}" || die "git fetch failed"
+  git checkout -t "origin/${GIT_REPO_BRANCH}" || die "git checkout failed"
 fi
 
 cd "${SYNC_DIR}"
 
-git pull || die "git pull failed"
+git pull origin "${GIT_REPO_BRANCH}" || die "git pull failed"
 
 git add --all . || die "git add failed"
 
@@ -51,10 +51,10 @@ else
   echo "No changes to commit."
 fi
 
-CHANGES_TO_PUSH=$(git diff --stat --cached origin/master)
+CHANGES_TO_PUSH=$(git diff --stat --cached "origin/${GIT_REPO_BRANCH}")
 
 if [ -n "${CHANGES_TO_PUSH}" ]; then
-  git push || die "git push failed"
+  git push origin "${GIT_REPO_BRANCH}" || die "git push failed"
 else
   echo "No changes to push"
 fi
