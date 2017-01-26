@@ -4,6 +4,7 @@ A docker image allowing you to sync a folder with a git repository.
 To use it, you must pass the following **environment variables**:
 
 * `GIT_REPO_URL`: URL of the Git repository to sync to, for example `ssh://git@example.com/foo/bar.git`.
+* `GIT_REPO_BRANCH`: Branch of the Git repository to sync to, for example `production`. Defaults to `master`.
 * `GIT_USER_EMAIL`: E-Mail address of author to show in commits
 * `GIT_USER_NAME`: Name of author to show in commits
 
